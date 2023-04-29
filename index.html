@@ -21,14 +21,28 @@
   <button id="func-timer">Start Timer</button>
 <script>
   var strToConvert = "\u200b";
-document.getElementById("timer").innerHTML = strToConvert;
+document.getElementById("timer").innerText = strToConvert;
   window.keysHeld = [];
 window.theKey = "";
 window.keysLog = [];
 window.aKeyPressed = false;
 setInterval(function() {
-  document.getElementById("timer").innerHTML = strToConvert;
+  document.getElementById("timer").innerText = strToConvert;
 }, 10);
+
+document.getElementById("func-timer").addEventListener('click', function() {
+	document.getElementById("func-timer").innerText = "Pause Timer";
+	setInterval(function(){
+		var bleh = strToConvert.split(':');
+		bleh = bleh.map(x => parseFloat(x));
+		bleh[bleh.length-1] -= 1;
+		if(bleh[bleh.length-1] >59) {
+			bleh[bleh.length-1] = 59;
+		}
+		bleh = bleh.map(x => x.toString());
+		bleh = bleh.map(x => x.padStart(2, '0'));
+	}, 1000);
+});
 /*String.prototype.replaceAll = function (stringToFind, stringToReplace) {
     if (stringToFind === stringToReplace) return this;
     var temp = this;
