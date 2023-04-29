@@ -14,8 +14,7 @@
 <body>
 
 <h1>Timer</h1>
-
-<p id='fonty'><span id="timer"></span></p>
+<span id="timer"></span>
 
   <button id="func-stopwatch">Start Stopwatch</button>
   <button id="func-timer">Start Timer</button><br>
@@ -30,7 +29,7 @@ window.aKeyPressed = false;
 setInterval(function() {
   document.getElementById("timer").innerText = strToConvert;
 	if(localStorage.hasOwnProperty("timer_sizefont")) {
-		document.getElementById("fonty").style.fontSize = `${localStorage.getItem("timer_sizefont")}pt`
+		document.getElementById("timer").style.fontSize = `${localStorage.getItem("timer_sizefont")}pt`
 	}
 }, 10);
 
