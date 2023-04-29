@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>"timer" - a feature rich timer</title>
+    	<meta charset="utf-8" />
+      <meta property="og:title" content="timer" />
+      <meta property="og:description" content="A feature rich open-source timer (with NO ADS), ready for you to use at any time." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://buggem.github.io/timer" />
+    <link href="/timer/main.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5392855125777051"
+     crossorigin="anonymous"></script>
+  </head>
+<body>
+
+<h1>Timer</h1>
+
+<h1 id="timer"></p>
+
+  <button id="stopwatch">Start Stopwatch</button>
+  <button id="timer">Start Timer</button>
+<script>
+  var strToConvert = "";
+document.getElementById("timer").innerHTML = strToConvert;
+  window.keysHeld = [];
+window.theKey = "";
+window.keysLog = [];
+window.aKeyPressed = false;
+setInterval(function() {
+  document.getElementById("timer").innerHTML = strToConvert;
+}, 10);
+/*String.prototype.replaceAll = function (stringToFind, stringToReplace) {
+    if (stringToFind === stringToReplace) return this;
+    var temp = this;
+    // debug line
+    // console.log((stringToFind.length > 0) + " and " + temp.includes(stringToFind))
+    temp = (((stringToFind.length > 0) && temp.includes(stringToFind)) ? (temp.split(stringToFind).join(stringToReplace)) : (temp))
+    return temp;
+};*/
+
+window.isHeld = function(_k) {
+	return window.keysHeld.includes(_k);
+};
+window.getKeysHeldAsString = function(d) {
+	return keysHeld.join(d);	
+};
+document.addEventListener('keydown', function (e) {
+	window.theKey = e.key;
+	window.keysLog.push(e.key);
+	if(isHeld(e.key)) {
+		return;
+	}
+	window.aKeyPressed = true;
+	window.keysHeld = window.keysHeld.filter(key => (e.key !== key));
+	
+	window.keysHeld.push(e.key);
+  if(Number.isInteger(parseFloat(theKey))) {
+    if((strToConvert.length % 2)==0) {
+     strToConvert = `${theKey}:${strToConvert}`; 
+    }
+  }
+	// testing 
+	// console.log(window.keysHeld);
+}
+);
+document.addEventListener('keyup', function (e) {
+	window.theKey = e.key;
+	window.keysHeld = window.keysHeld.filter(key => (e.key !== key));
+	if(window.keysHeld.length <= 0) { window.aKeyPressed = false; }
+	// testing 
+	//console.log(keysHeld);
+}
+);
+
+</script> 
+
+</body>
+</html>
