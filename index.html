@@ -30,7 +30,7 @@ window.aKeyPressed = false;
 setInterval(function() {
   document.getElementById("timer").innerText = strToConvert;
 	if(localStorage.hasOwnProperty("timer_sizefont")) {
-		document.getElementById("timer").style.fontSize = `${localStorage.getItem("timer_sizefont")}pt !important`
+		document.getElementById("timer").style.fontSize = `${localStorage.getItem("timer_sizefont")}pt`
 	}
 }, 10);
 
