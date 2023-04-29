@@ -48,6 +48,9 @@ img {
   color: inherit !important;
   text-decoration: none;
 }
+#timer {
+  font-size: 60pt;
+}
 .center {
   display: flex;
   flex-direction: column;
