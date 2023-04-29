@@ -1,2 +1,2 @@
-# timer
-A feature rich timer
+# "`timer`"
+A **open source** feature rich timer
