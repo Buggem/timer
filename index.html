@@ -18,7 +18,8 @@
 <h1 id="timer"></h1>
 
   <button id="func-stopwatch">Start Stopwatch</button>
-  <button id="func-timer">Start Timer</button>
+  <button id="func-timer">Start Timer</button><br>
+	<a href="/timer/config">Configurate the Timer</a>
 <script>
   var strToConvert = "\u200b";
 document.getElementById("timer").innerText = strToConvert;
@@ -28,6 +29,9 @@ window.keysLog = [];
 window.aKeyPressed = false;
 setInterval(function() {
   document.getElementById("timer").innerText = strToConvert;
+	if(localStorage.hasOwnProperty("timer_sizefont")) {
+		document.getElementById("timer").style.fontSize = `${localStorage.getItem("timer_sizefont")}pt`
+	}
 }, 10);
 
 document.getElementById("func-timer").addEventListener('click', function() {
