@@ -19,6 +19,12 @@
     <br>Timer font size: <span id="sizefont"></span>pt
   </div>
   <script>
+    var sounds = {
+      "soviet": "https://upload.wikimedia.org/wikipedia/commons/d/db/Gimn_Sovetskogo_Soyuza_%281977_Vocal%29.oga"
+      "sus": "/ANOTHER_HIM.mp3"
+      "key": "/key5.wav"
+      "none": "/key5.wav"
+    };
     if(localStorage.hasOwnProperty("timer_sizefont")) {
       window.sizefont = parseInt(localStorage.getItem("timer_sizefont"));
       document.getElementById("myRange").value = localStorage.getItem("timer_sizefont");
@@ -29,7 +35,18 @@
       document.getElementById("sizefont").style.fontSize = `${sizefont}pt`;
       document.getElementById("sizefont").innerText = sizefont;
       localStorage.setItem("timer_sizefont", sizefont);
+      ////////////////////////////////////////////////////////
+      var select = document.getElementById("sound-select");
+      for(let option of select) {
+        if(option.selected) { localStorage.setItem("timer_soundurl", sounds[option.getAttribute("value")])
+      }
     }, 10);
   </script>
+  <select name="select" id="sound-select">
+    <option value="none">--Please choose an option--</option>
+    <option value="key">Soft 90's Key Press</option>
+    <option value="sus">Some Weird Music</option>
+    <option value="soviet">Гимн Советского Союза</option>
+</select>
 </body>
 </html>
