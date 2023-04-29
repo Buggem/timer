@@ -19,6 +19,24 @@
   <button id="func-stopwatch">Start Stopwatch</button>
   <button id="func-timer">Start Timer</button><br>
 	<a href="/timer/config">Configurate the Timer</a>
+	<button id="pausemusic">Pause Music</button>
+	<script id="so-answer38796843">
+      /*
+       * Code from https://stackoverflow.com/a/38796843/
+       */
+      window.playSound = function(url, loop) {
+        var ourAudio = document.createElement('audio'); // Create a audio element using the DOM
+        ourAudio.style.display = "none"; // Hide the audio element
+        ourAudio.src = url; // Set resource to our URL
+        ourAudio.autoplay = true; // Automatically play sound
+        ourAudio.loop = loop;
+        ourAudio.onended = function() {
+          if(!loop) { this.remove(); } // Remove when played.
+        };
+        document.body.appendChild(ourAudio);
+	      return ourAudio;
+      };
+    </script>
 <script>
   var strToConvert = "\u200b";
 document.getElementById("timer").innerText = strToConvert;
@@ -32,10 +50,22 @@ setInterval(function() {
 		document.getElementById("timer").style.fontSize = `${localStorage.getItem("timer_sizefont")}pt`
 	}
 }, 10);
-
+function timerFinish() {
+	if(localStorage.hasOwnProperty("timer_soundurl")) {
+		window.alarm = playSound(localStorage.getItem("timer_soundurl"), true);
+	} else {
+		window.alarm = playSound("/key5.wav", true);
+	}
+	document.getElementById("pausemusic").style.display = 'block';
+}
+	document.getElementById("pausemusic").addEventListener('click', function() {
+		window.alarm.pause();
+		document.getElementById("pausemusic").style.display = 'none';
+	});
 document.getElementById("func-timer").addEventListener('click', function() {
 	document.getElementById("func-timer").innerText = "Pause Timer";
-	setInterval(function(){
+	window.clockInterval = setInterval(function(){
+		var end = false;
 		var bleh = strToConvert.split(':');
 		bleh = bleh.map(x => parseFloat(x));
 		if(bleh[bleh.length-1] != 0) {
@@ -47,10 +77,12 @@ document.getElementById("func-timer").addEventListener('click', function() {
 		if(bleh[bleh.length-1] >59) {
 			bleh[bleh.length-1] = 59;
 		}
-		
+		if(bleh.filter(function(x){ return x == 0; }).length == bleh.length) end =true
 		bleh = bleh.map(x => x.toString());
 		bleh = bleh.map(x => x.padStart(2, '0'));
 		strToConvert = bleh.join(':');
+		if(end) {timerFinish(); clearInterval(clockInterval);}
+		
 	}, 1000);
 });
 /*String.prototype.replaceAll = function (stringToFind, stringToReplace) {
