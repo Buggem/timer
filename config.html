@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>"timer" - a feature rich timer</title>
+    	<meta charset="utf-8" />
+      <meta property="og:title" content="timer - config" />
+      <meta property="og:description" content="A feature rich open-source timer (with NO ADS), ready for you to use at any time. This page is the CONFIG, not the actual thing." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://buggem.github.io/timer" />
+    <link href="/timer/main.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5392855125777051"
+     crossorigin="anonymous"></script>
+  </head>
+<body>
+  <h1>Configuration</h1>
+  <div class="slidecontainer">
+    <input type="range" min="1" max="100" value="30" class="slider" id="myRange">
+    <br>Timer font size: <span id="sizefont"></span>pt
+  </div>
+  <script>
+    window.sizefont = parseInt(document.getElementById("myRange").value);
+    setInterval(function(){
+      window.sizefont = parseInt(document.getElementById("myRange").value);
+      document.getElementById("sizefont").style.fontSize = `${sizefont}pt`;
+      document.getElementById("sizefont").innerText = sizefont;
+      localStorage.setItem("timer_sizefont", sizefont);
+    }, 10);
+  </script>
+</body>
+</html>
