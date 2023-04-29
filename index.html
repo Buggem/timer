@@ -55,8 +55,10 @@ document.addEventListener('keydown', function (e) {
 	
 	window.keysHeld.push(e.key);
   if(Number.isInteger(parseFloat(theKey))) {
-    if((strToConvert.length % 3)==0) {
+    if((strToConvert.length % 3)==0 && strToConvert.length != 0) {
      strToConvert = `${theKey}:${strToConvert}`; 
+    } else {
+     strToConvert = `${theKey}${strToConvert}`; 
     }
   }
 	// testing 
