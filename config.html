@@ -19,6 +19,9 @@
     <br>Timer font size: <span id="sizefont"></span>pt
   </div>
   <script>
+    if(localStorage.hasOwnProperty("timer_sizefont")) {
+      window.sizefont = parseInt(localStorage.getItem("timer_sizefont"));
+    }
     window.sizefont = parseInt(document.getElementById("myRange").value);
     setInterval(function(){
       window.sizefont = parseInt(document.getElementById("myRange").value);
